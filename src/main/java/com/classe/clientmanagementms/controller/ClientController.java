@@ -2,7 +2,8 @@ package com.classe.clientmanagementms.controller;
 
 import com.classe.clientmanagementms.dto.ClientDTO;
 import com.classe.clientmanagementms.dto.CreationClientDTO;
-import com.classe.clientmanagementms.entity.ClientEntity;
+import com.classe.clientmanagementms.mapper.ClientMapper;
+import com.classe.clientmanagementms.model.Client;
 import com.classe.clientmanagementms.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,8 +19,9 @@ public class ClientController {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public ClientEntity create(@RequestBody CreationClientDTO creationClientDTO) {
-        return  clientService.create(creationClientDTO);
+    public ClientDTO create(@RequestBody CreationClientDTO creationClientDTO) {
+        Client client = ClientMapper.INSTANCE.creationClientDtoToClientModel(creationClientDTO);
+        return clientService.create(client);
     }
 
 

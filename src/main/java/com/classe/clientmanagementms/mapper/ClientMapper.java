@@ -1,9 +1,11 @@
 package com.classe.clientmanagementms.mapper;
 
-import com.classe.clientmanagementms.dto.CreationClientDTO;
 import com.classe.clientmanagementms.dto.ClientDTO;
+import com.classe.clientmanagementms.dto.CreationClientDTO;
 import com.classe.clientmanagementms.entity.ClientEntity;
+import com.classe.clientmanagementms.model.Client;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import java.util.Set;
@@ -12,12 +14,20 @@ import java.util.Set;
 public interface ClientMapper {
     ClientMapper INSTANCE = Mappers.getMapper(ClientMapper.class);
 
-    CreationClientDTO clientToClientDTO(ClientEntity entity);
+    @Mapping(target = "id", ignore = true) // Ignore the 'id' property during mapping
+    Client creationClientDtoToClientModel(CreationClientDTO creationClientDTO);
 
-    ClientDTO clientToGetClientDTO (ClientEntity entity);
-    Set<ClientDTO> clientToGetClientDTO (Set <ClientEntity> entities);
+    ClientEntity clientModelToClientEntity(Client client);
 
-    ClientEntity clientDTOtoClient(CreationClientDTO dto);
+    ClientDTO clientToClientDTO(Client client);
+
+    Set<ClientDTO> clientsToClientDTOs(Set<Client> clients);
+
+    Set<ClientDTO> clientEntitiesToClientDTOs(Set<ClientEntity> clientEntities);
+
+    ClientDTO clientEntityToClientDTO(ClientEntity clientEntity);
+
+    ClientEntity clientToClientEntity(Client client);
 
 
 }

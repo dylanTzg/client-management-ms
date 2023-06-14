@@ -1,9 +1,9 @@
 package com.classe.clientmanagementms.service;
 
 import com.classe.clientmanagementms.dto.ClientDTO;
-import com.classe.clientmanagementms.dto.CreationClientDTO;
 import com.classe.clientmanagementms.entity.ClientEntity;
 import com.classe.clientmanagementms.mapper.ClientMapper;
+import com.classe.clientmanagementms.model.Client;
 import com.classe.clientmanagementms.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,23 +23,24 @@ public class ClientServiceImpl implements ClientService {
 
 
     @Override
-    public ClientEntity create(CreationClientDTO creationClientDTO) {
-        ClientEntity clientEntity = ClientMapper.INSTANCE.clientDTOtoClient(creationClientDTO);
+    public ClientDTO create(Client client) {
+        ClientEntity clientEntity = ClientMapper.INSTANCE.clientModelToClientEntity(client);
         clientRepository.save(clientEntity);
-        return clientEntity;
+        ClientDTO clientDTO = ClientMapper.INSTANCE.clientEntityToClientDTO(clientEntity);
+        return clientDTO;
     }
 
     @Override
     public Set<ClientDTO> getAllClients() {
         Set<ClientEntity> clients = StreamSupport.stream(clientRepository.findAll().spliterator(), false).collect(Collectors.toSet());
-        Set<ClientDTO> clientsDto = ClientMapper.INSTANCE.clientToGetClientDTO(clients);
+        Set<ClientDTO> clientsDto = ClientMapper.INSTANCE.clientEntitiesToClientDTOs(clients);
         return clientsDto;
     }
 
     @Override
     public ClientDTO getClientBydId(Long id) {
         ClientEntity client = clientRepository.findById(id).orElseThrow(() -> new ResponseStatusException(NOT_FOUND,"Le client n'existe pas"));
-        ClientDTO clientDTO = ClientMapper.INSTANCE.clientToGetClientDTO(client);
+        ClientDTO clientDTO = ClientMapper.INSTANCE.clientEntityToClientDTO(client);
         return clientDTO;
     }
     @Override
