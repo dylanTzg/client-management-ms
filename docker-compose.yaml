@@ -1,0 +1,16 @@
+version: '3'
+services:
+  client-management-ms:
+    build: .
+    ports:
+      - 8081:8081
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/client
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    networks:
+      - your_network
+
+networks:
+  your_network:
+    external: true
