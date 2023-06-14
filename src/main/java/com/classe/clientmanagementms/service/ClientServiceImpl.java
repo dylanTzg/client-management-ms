@@ -5,10 +5,13 @@ import com.classe.clientmanagementms.entity.ClientEntity;
 import com.classe.clientmanagementms.mapper.ClientMapper;
 import com.classe.clientmanagementms.model.Client;
 import com.classe.clientmanagementms.repository.ClientRepository;
+import com.classe.clientmanagementms.utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.lang.reflect.Field;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -39,14 +42,32 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public ClientDTO getClientBydId(Long id) {
-        ClientEntity client = clientRepository.findById(id).orElseThrow(() -> new ResponseStatusException(NOT_FOUND,"Le client n'existe pas"));
+        ClientEntity client = clientRepository.findById(id).orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Le client n'existe pas"));
         ClientDTO clientDTO = ClientMapper.INSTANCE.clientEntityToClientDTO(client);
         return clientDTO;
     }
+
     @Override
     public void deleteClientBydId(Long id) {
-        clientRepository.findById(id).orElseThrow(() -> new ResponseStatusException(NOT_FOUND,"Le client n'existe pas"));;
+        clientRepository.findById(id).orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Le client n'existe pas"));
         clientRepository.deleteById(id);
     }
+
+    @Override
+    public ClientDTO updateAll(Long id, Client client) {
+        ClientEntity clientEntity = ClientMapper.INSTANCE.clientToClientEntity(client);
+        ClientDTO clientDTO = ClientMapper.INSTANCE.clientEntityToClientDTO(clientRepository.save(clientEntity));
+        return clientDTO;
+    }
+
+    @Override
+    public ClientDTO update(Long id, Client client) throws IllegalAccessException {
+        ClientEntity clientEntity = clientRepository.findById(id).orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Le client n'existe pas"));
+        Util.updateClientEntityFromClient(client, clientEntity);
+        clientRepository.save(clientEntity);
+        ClientDTO clientDTO = ClientMapper.INSTANCE.clientEntityToClientDTO(clientEntity);
+        return clientDTO;
+    }
+
 
 }

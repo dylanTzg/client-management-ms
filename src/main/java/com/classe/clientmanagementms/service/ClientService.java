@@ -6,6 +6,7 @@ import com.classe.clientmanagementms.entity.ClientEntity;
 import com.classe.clientmanagementms.model.Client;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
 import java.util.Set;
 @Service
 public interface ClientService {
@@ -17,4 +18,8 @@ public interface ClientService {
     public ClientDTO getClientBydId(Long id);
 
     public void deleteClientBydId(Long id);
+
+    ClientDTO updateAll(Long id, Client client);
+
+    ClientDTO update(Long id, Client client) throws IllegalAccessException;
 }
