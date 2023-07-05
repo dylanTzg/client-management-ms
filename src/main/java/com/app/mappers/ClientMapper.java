@@ -1,16 +1,12 @@
-package com.classe.clientmanagementms.mapper;
+package com.app.mappers;
 
-import com.classe.clientmanagementms.dto.ClientDTO;
-import com.classe.clientmanagementms.dto.CreationClientDTO;
-import com.classe.clientmanagementms.entity.ClientEntity;
-import com.classe.clientmanagementms.model.Client;
+import com.app.dto.ClientDTO;
+import com.app.dto.CreationClientDTO;
+import com.app.entities.ClientEntity;
+import com.app.models.Client;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 
 @Mapper

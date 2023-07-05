@@ -1,17 +1,15 @@
-package com.classe.clientmanagementms.service;
+package com.app.services;
 
-import com.classe.clientmanagementms.dto.ClientDTO;
-import com.classe.clientmanagementms.entity.ClientEntity;
-import com.classe.clientmanagementms.mapper.ClientMapper;
-import com.classe.clientmanagementms.model.Client;
-import com.classe.clientmanagementms.repository.ClientRepository;
-import com.classe.clientmanagementms.utils.Util;
+import com.app.dto.ClientDTO;
+import com.app.entities.ClientEntity;
+import com.app.mappers.ClientMapper;
+import com.app.models.Client;
+import com.app.repositories.ClientRepository;
+import com.app.utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.lang.reflect.Field;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;

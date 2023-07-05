@@ -1,4 +1,4 @@
-package com.classe.clientmanagementms.dto;
+package com.app.dto;
 
 import lombok.Data;
 

@@ -1,13 +1,12 @@
-package com.classe.clientmanagementms.controller;
+package com.app.controllers;
 
-import com.classe.clientmanagementms.dto.ClientDTO;
-import com.classe.clientmanagementms.dto.CreationClientDTO;
-import com.classe.clientmanagementms.mapper.ClientMapper;
-import com.classe.clientmanagementms.model.Client;
-import com.classe.clientmanagementms.service.ClientService;
-import com.classe.clientmanagementms.utils.Util;
+import com.app.dto.ClientDTO;
+import com.app.dto.CreationClientDTO;
+import com.app.mappers.ClientMapper;
+import com.app.services.ClientService;
+import com.app.models.Client;
+import com.app.utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.logging.logback.ColorConverter;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

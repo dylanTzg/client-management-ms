@@ -1,7 +1,7 @@
-package com.classe.clientmanagementms.utils;
+package com.app.utils;
 
-import com.classe.clientmanagementms.entity.ClientEntity;
-import com.classe.clientmanagementms.model.Client;
+import com.app.entities.ClientEntity;
+import com.app.models.Client;
 
 import java.lang.reflect.Field;
 import java.util.Map;

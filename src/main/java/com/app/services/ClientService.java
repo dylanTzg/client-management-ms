@@ -1,12 +1,9 @@
-package com.classe.clientmanagementms.service;
+package com.app.services;
 
-import com.classe.clientmanagementms.dto.ClientDTO;
-import com.classe.clientmanagementms.dto.CreationClientDTO;
-import com.classe.clientmanagementms.entity.ClientEntity;
-import com.classe.clientmanagementms.model.Client;
+import com.app.dto.ClientDTO;
+import com.app.models.Client;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
 import java.util.Set;
 @Service
 public interface ClientService {

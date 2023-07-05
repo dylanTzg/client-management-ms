@@ -1,21 +1,20 @@
-package com.classe.clientmanagementms.model;
+package com.app.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
-public class Client {
-    private Long id;
+@Data
+public class CreationClientDTO {
+
     private String prenom;
     private String nom;
     private String email;
+    private String motDePasse;
     private String telephone;
     private String adresse;
     private LocalDate dateNaissance;
     private String profession;
-    private String motDePasse;
     private String genre;
 }
+
