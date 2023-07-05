@@ -8,6 +8,6 @@ class ClientManagementMsApplicationTests {
 
     @Test
     void contextLoads() {
-    }
+   }
 
 }

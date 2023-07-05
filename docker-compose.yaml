@@ -1,16 +1,19 @@
 version: '3'
 services:
   client-management-ms:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - 8081:8081
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/client
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
-    networks:
-      - your_network
+      - "8081:8081"
+    depends_on:
+      - postgres
 
-networks:
-  your_network:
-    external: true
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_DB=client
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+    ports:
+      - "5432:5432"
