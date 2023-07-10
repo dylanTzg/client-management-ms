@@ -14,7 +14,6 @@ public interface ClientMapper {
     ClientMapper INSTANCE = Mappers.getMapper(ClientMapper.class);
 
     @Mapping(target = "id", ignore = true)
-        // Ignore the 'id' property during mapping
     Client creationClientDtoToClientModel(CreationClientDTO creationClientDTO);
 
     ClientEntity clientModelToClientEntity(Client client);
@@ -29,4 +28,5 @@ public interface ClientMapper {
 
     ClientEntity clientToClientEntity(Client client);
 
+    ClientDTO creationClientDtoToClientDto(CreationClientDTO creationClientDTO);
 }
